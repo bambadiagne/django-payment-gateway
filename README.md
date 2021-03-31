@@ -1,2 +1,2 @@
 # django-payment-gateway
-Passerelle de paiement
+Une passerelle de paiement (Orange Money,Wave,Wari...) avec Django
