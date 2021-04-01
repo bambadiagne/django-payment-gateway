@@ -9,9 +9,30 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import django_heroku
 from pathlib import Path
 import os
+import paydunya
+
+PAYDUNYA_ACCESS_TOKENS = {
+  'PAYDUNYA-MASTER-KEY':os.environ.get("PAYDUNYA-MASTER-KEY") ,
+  'PAYDUNYA-PRIVATE-KEY':os.environ.get("PAYDUNYA-PRIVATE-KEY") ,
+  'PAYDUNYA-TOKEN':os.environ.get("PAYDUNYA-TOKEN") 
+}
+
+# Activer le mode 'test'. Le debug est à False par défaut
+paydunya.debug = True
+
+# Configurer les clés d'API
+paydunya.API_keys = PAYDUNYA_ACCESS_TOKENS
+infos = {
+  'name': "payment-paydunya", # Seul le nom est requis
+  'tagline': "Application pour tester l'API paydunya",
+  'postal_address': "Dakar Plateau - Etablissement kheweul",
+  'phone_number': "336530583",
+  'website_url': "https://paymentpaydunya.herokuapp.com/",
+  'logo_url': "http://www.chez-sandra.sn/logo.png"
+}
+store = paydunya.Store(**infos)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,9 +43,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ['paymentpaydunya.herokuapp.com']
-DEBUG = True
-
+ALLOWED_HOSTS = ['paymentpaydunya.herokuapp.com',"127.0.0.1"]
+if(os.environ.get('ENV')=='PRODUCTION'):
+    DEBUG=False
+else:
+    DEBUG=True    
 
 # Application definition
 
@@ -36,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paymentapp.apps.PaymentappConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,8 +143,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,MEDIA_URL)
 STATIC_URL = '/static/'
-           
+STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )           
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 if os.environ.get('ENV') == 'PRODUCTION':
