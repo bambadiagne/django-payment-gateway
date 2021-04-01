@@ -44,11 +44,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = ['paymentpaydunya.herokuapp.com',"127.0.0.1"]
-#if(os.environ.get('ENV')=='PRODUCTION'):
-#    DEBUG=False
-#else:
-#    DEBUG=True    
-DEBUG=True
+if(os.environ.get('ENV')=='PRODUCTION'):
+    DEBUG=False
+else:
+    DEBUG=True    
 # Application definition
 
 INSTALLED_APPS = [
@@ -146,9 +145,6 @@ USE_TZ = True
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,MEDIA_URL)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )           
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -165,5 +161,10 @@ if os.environ.get('ENV') == 'PRODUCTION':
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')           
 
     
