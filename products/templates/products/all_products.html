@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+{% endblock %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="category.html">Category</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sub-category</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
+                    <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
+                    <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
+                    <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
+                    <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="col">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img class="card-img-top" src="{{product.product_image.url}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="product.html" title="View Product">{{product.product_title}}</a></h4>
+                            <p class="card-text">{{product.product_description}}</p>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'one_product' product_id=product.id %}" class="btn btn-danger btn-block">{{product.product_price}} CFA</a>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-12">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>{% endblock %}   
+{% block js %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
