@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
 import os
-import paydunya
+#import paydunya
 
 PAYDUNYA_ACCESS_TOKENS = {
   'PAYDUNYA-MASTER-KEY':os.environ.get("PAYDUNYA-MASTER-KEY") ,
@@ -20,10 +20,10 @@ PAYDUNYA_ACCESS_TOKENS = {
 }
 
 # Activer le mode 'test'. Le debug est à False par défaut
-paydunya.debug = True
+#paydunya.debug = True
 
 # Configurer les clés d'API
-paydunya.API_keys = PAYDUNYA_ACCESS_TOKENS
+#paydunya.API_keys = PAYDUNYA_ACCESS_TOKENS
 infos = {
   'name': "payment-paydunya", # Seul le nom est requis
   'tagline': "Application pour tester l'API paydunya",
@@ -32,7 +32,7 @@ infos = {
   'website_url': "https://paymentpaydunya.herokuapp.com/",
   'logo_url': "http://www.chez-sandra.sn/logo.png"
 }
-store = paydunya.Store(**infos)
+#store = paydunya.Store(**infos)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
