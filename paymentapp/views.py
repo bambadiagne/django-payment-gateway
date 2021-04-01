@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login
 import hashlib
 from . import forms
-import paydunya
+#import paydunya
 from payment_test import settings
 
 def payment_page(request):
-    invoice = paydunya.Invoice(settings.store)
+ pass
+ #   invoice = paydunya.Invoice(settings.store)
     
 def checked(request):
     try:
