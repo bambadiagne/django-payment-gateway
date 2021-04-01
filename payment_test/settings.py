@@ -44,11 +44,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = ['paymentpaydunya.herokuapp.com',"127.0.0.1"]
-if(os.environ.get('ENV')=='PRODUCTION'):
-    DEBUG=False
-else:
-    DEBUG=True    
-
+#if(os.environ.get('ENV')=='PRODUCTION'):
+#    DEBUG=False
+#else:
+#    DEBUG=True    
+DEBUG=True
 # Application definition
 
 INSTALLED_APPS = [
