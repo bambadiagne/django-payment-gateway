@@ -17,20 +17,24 @@ def new_product(request):
         return render(request,"products/new_product.html",{"product_form":product_form})    
     elif(request.method=="POST"):    
         product_form=ProductForm(request.POST,request.FILES)
-        print(request.POST)
-        print(request.FILES)
         if(product_form.is_valid()):
             product_form.save()
             return redirect('all_products')
         
         return render(request,"products/new_product.html",{"errors":product_form.errors})     
 def update_product(request,product_id):
-    one_product=Product.objects.filter(pk=product_id).first()
-    
+    one_product=Product.objects.filter(id=product_id)
+    product_form=ProductForm(instance=one_product)
     if(request.method=="GET"):
-        return render(request,"products/update_product.html")    
+        return render(request,"products/update_product.html",{"product_form":product_form,"product_id":product_id})    
     elif(request.method=="POST"):    
-        pass
+        product_form=ProductForm(request.POST,request.FILES)
+        if(product_form.is_valid()):
+            if(product_form.has_changed()):
+                one_product.update(*request.POST)
+                return redirect('all_products')
+            return redirect('all_products')
+        return render(request,"products/new_product.html",{"errors":product_form.errors}) 
     
 def delete_product(request,product_id):
 

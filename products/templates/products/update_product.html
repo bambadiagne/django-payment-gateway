@@ -1,1 +1,13 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
 <h1>Update Product</h1>
+
+{{errors}}
+<div class="d-flex justify-content-center">
+<form action="{% url 'update_product' product_id=product_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ product_form.as_p }}
+    <button type="submit" >Submit</button>
+</form>
+</div>
+{% endblock %}

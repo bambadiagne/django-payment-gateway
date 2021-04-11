@@ -43,14 +43,14 @@
                     <div class="card">
                         <img class="card-img-top" src="{{product.product_image.url}}" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="product.html" title="View Product">{{product.product_title}}</a></h4>
+                            <h4 class="card-title"><a href="{% url 'one_product' product_id=product.id %}" title="View Product">{{product.product_title}}</a></h4>
                             <p class="card-text">{{product.product_description}}</p>
                             <div class="row">
                                 <div class="col">
-                                    <a href="{% url 'one_product' product_id=product.id %}" class="btn btn-danger btn-block">{{product.product_price}} CFA</a>
+                                    <p href="#" class="btn btn-danger btn-block">{{product.product_price}} CFA</p>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                    <a href="#" class="btn btn-success btn-block">Commander ici</a>
                                 </div>
                             </div>
                         </div>
