@@ -1,0 +1,7 @@
+<h1>Nouvelle category</h1>
+{{errors}}
+<form action="{% url 'new_category' %}" method="post" >
+    {% csrf_token %}
+    {{ category_form.as_p }}
+    <button type="submit" >Submit</button>
+</form>

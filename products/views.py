@@ -1,6 +1,17 @@
 from django.shortcuts import render,redirect
 from paymentapp.models import Product,Category
-from .forms import ProductForm
+from .forms import ProductForm,CategoryForm
+
+def new_category(request):
+    if(request.method=="GET"):
+        category_form=CategoryForm()
+        return render(request,'products/new_category.html',{"category_form":category_form})
+    elif(request.method=="POST"):
+        category_form=CategoryForm(request.POST)
+        if(category_form.is_valid()):
+            category_form.save()
+            return redirect('all_products')    
+
 def all_products(request):
     
     products=Product.objects.all()
