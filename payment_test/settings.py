@@ -14,9 +14,9 @@ import os
 import paydunya
 
 PAYDUNYA_ACCESS_TOKENS = {
-  'PAYDUNYA-MASTER-KEY':os.environ.get("PAYDUNYA-MASTER-KEY") ,
-  'PAYDUNYA-PRIVATE-KEY':os.environ.get("PAYDUNYA-PRIVATE-KEY") ,
-  'PAYDUNYA-TOKEN':os.environ.get("PAYDUNYA-TOKEN") 
+  'PAYDUNYA-MASTER-KEY':os.environ.get("PAYDUNYA_MASTER_KEY") ,
+  'PAYDUNYA-PRIVATE-KEY':os.environ.get("PAYDUNYA_PRIVATE_KEY") ,
+  'PAYDUNYA-TOKEN':os.environ.get("PAYDUNYA_TOKEN") 
 }
 
 # Activer le mode 'test'. Le debug est à False par défaut
