@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
 import os
-#import paydunya
+import paydunya
 
 PAYDUNYA_ACCESS_TOKENS = {
   'PAYDUNYA-MASTER-KEY':os.environ.get("PAYDUNYA-MASTER-KEY") ,
@@ -20,10 +20,10 @@ PAYDUNYA_ACCESS_TOKENS = {
 }
 
 # Activer le mode 'test'. Le debug est à False par défaut
-#paydunya.debug = True
+paydunya.debug = True
 
 # Configurer les clés d'API
-#paydunya.API_keys = PAYDUNYA_ACCESS_TOKENS
+paydunya.API_keys = PAYDUNYA_ACCESS_TOKENS
 infos = {
   'name': "payment-paydunya", # Seul le nom est requis
   'tagline': "Application pour tester l'API paydunya",
@@ -98,11 +98,14 @@ WSGI_APPLICATION = 'payment_test.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("NAME_PG"),
+        'USER': os.environ.get("USER_PG"),
+        'PASSWORD': os.environ.get("PASSWORD_PG"),
+        'HOST': os.environ.get("HOST_PG"),
+        'PORT': os.environ.get("PORT_PG"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
