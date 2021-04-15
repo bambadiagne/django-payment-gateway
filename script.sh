@@ -1,1 +1,1 @@
-python manage.py migrate
+python manage.py migrate && chmod 777 /media
