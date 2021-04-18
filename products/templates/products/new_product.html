@@ -3,5 +3,6 @@
 <form action="{% url 'new_product' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ product_form.as_p }}
+    <input type="file" name="product_image" id="product_image">
     <button type="submit" >Submit</button>
 </form>

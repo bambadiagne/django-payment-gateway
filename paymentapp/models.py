@@ -55,7 +55,7 @@ class Product(models.Model):
     product_title = models.CharField(('product_title'), max_length=50,)
     product_price = models.IntegerField(('product_price'),)
     product_description = models.TextField(('product_description'),blank=True)
-    product_image = models.ImageField(upload_to='media/')
+    product_image = models.CharField(('product_image'), max_length=100,default="placeholder")
     category_name = models.ForeignKey(Category, on_delete=models.CASCADE)
     user= models.ManyToManyField(User)
     def __str__(self):

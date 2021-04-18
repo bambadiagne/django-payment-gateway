@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from paymentapp.models import Product,Category
 from .forms import ProductForm,CategoryForm
-
+from filestack import Client
+import os
+client = Client(os.environ.get("FILESTACK_API_KEY"))
+from .utils import handle_uploaded_file
 def new_category(request):
     if(request.method=="GET"):
         category_form=CategoryForm()
@@ -29,7 +32,15 @@ def new_product(request):
     elif(request.method=="POST"):    
         product_form=ProductForm(request.POST,request.FILES)
         if(product_form.is_valid()):
-            product_form.save()
+            new_product=product_form.save(commit=False)
+            
+            store_params = {
+            "mimetype": "image/png"
+            }
+            new_filelink = client.upload(filepath=handle_uploaded_file(request.FILES["product_image"]), store_params=store_params)
+            new_product.product_image=new_filelink.url
+            new_product.save()
+            
             return redirect('all_products')
         
         return render(request,"products/new_product.html",{"errors":product_form.errors})     

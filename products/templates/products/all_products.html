@@ -41,7 +41,7 @@
                 {% for product in products %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <img class="card-img-top" src="{{product.product_image.url}}" alt="Card image cap">
+                        <img class="card-img-top" src="{{product.product_image}}" alt="Card image cap">
                         <div class="card-body">
                             <h4 class="card-title"><a href="{% url 'one_product' product_id=product.id %}" title="View Product">{{product.product_title}}</a></h4>
                             <p class="card-text">{{product.product_description}}</p>
