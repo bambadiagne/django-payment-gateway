@@ -3,6 +3,7 @@ certifi==2020.12.5
 chardet==4.0.0
 Django==3.1.7
 idna==2.10
+requests==2.25.1
 filestack-python==3.3.0
 git+https://github.com/bambadiagne/paydunya-python
 urllib3==1.26.4
