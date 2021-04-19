@@ -156,13 +156,12 @@ STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
    
-if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
 
     # Extra places for collectstatic to find static files.
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     
