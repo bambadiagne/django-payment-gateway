@@ -3,9 +3,10 @@ from django.contrib.auth.hashers import make_password
 import hashlib
 from . import forms
 from paydunya import InvoiceItem
-from .paydunya import invoice
+from .paydunya_conf import invoice
 from payment_test import settings
 from .models import Product
+import json
 def payment_page(request):
  pass
  #   invoice = paydunya.Invoice(settings.store)
@@ -25,8 +26,8 @@ def order(request,product_id):
     invoice.add_items([InvoiceItem(
     name=product_to_buy.product_title,
     quantity=1,
-    unit_price=product_to_buy.product_price,
-    total_price=product_to_buy.product_price,
+    unit_price=str(4000),
+    total_price=str(4000),
     description=product_to_buy.product_description
   ),])
     invoice.total_amount=product_to_buy.product_price
@@ -34,4 +35,4 @@ def order(request,product_id):
     if successful:
         print(successful)
         return redirect("home")
-    return response    
+    print(response)    

@@ -50,7 +50,7 @@
                                     <p href="#" class="btn btn-danger btn-block">{{product.product_price}} CFA</p>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Commander ici</a>
+                                    <a href="{% url 'order_product' product_id=product.id %}" class="btn btn-success btn-block">Commander ici</a>
                                 </div>
                             </div>
                         </div>
