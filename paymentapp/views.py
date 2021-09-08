@@ -3,8 +3,7 @@ from django.contrib.auth.hashers import make_password
 import hashlib
 from . import forms
 from paydunya import InvoiceItem
-from .paydunya_conf import invoice
-from payment_test import settings
+from .paydunya_conf import invoice,PAYDUNYA_ACCESS_TOKENS
 from .models import Product
 import json
 def payment_page(request):
@@ -32,6 +31,7 @@ def order(request,product_id):
   ),])
     invoice.total_amount=product_to_buy.product_price
     successful, response = invoice.create()
+    print(successful,response)
     if successful:
         print(successful)
         return redirect("home")
