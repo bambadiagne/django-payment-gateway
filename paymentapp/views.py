@@ -31,6 +31,7 @@ def order(request,product_id):
   ),])
     invoice.total_amount=product_to_buy.product_price
     successful, response = invoice.create()
+    print(successful,response)
     if successful:
         print(successful)
         return redirect("home")

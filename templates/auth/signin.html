@@ -7,8 +7,9 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
+<link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">
 {% endblock %}
 
 {% block title%}Page de connexion {% endblock %}
@@ -41,8 +42,8 @@
                             <input type="text" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input id="password-field" type="password" name="password" class="form-control" placeholder="Mot de passe"
-                                required>
+                            <input id="password-field" type="password" name="password" class="form-control"
+                                placeholder="Mot de passe" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
